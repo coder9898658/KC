@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://raw.githack.com/mystxryy/All-The-Best/refs/heads/main/Atb.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARTIKEY CHAWLA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            transition: background-color 2s ease-in-out;
+        }
+
+        .box {
+            background-color: #ff6347;
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            transition: opacity 2s ease-in-out;
+        }
+
+        #birthday-message {
+            display: none;
+            font-size: 48px;
+            color: yellow;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInText 2s forwards ease-in-out 1s;
+        }
+
+        #cake-container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .cake-deck {
+            position: absolute;
+            width: 200px;
+            height: 80px;
+            background-color: #ff69b4;
+            border-radius: 20px;
+            opacity: 0;
+            animation: fallIn 1s ease forwards;
+        }
+
+        /* Top to Bottom Cake Decks */
+        .first-deck {
+            top: 160px;
+            text-align: center;
+            display: flex;
+            color: grey;
+            justify-content: center;/* Bottom layer */
+        }
+
+        .second-deck {
+            top: 80px;  /* Middle layer */
+            width: 150px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            left: 25px;
+            color: grey;
+            background-color: #ff1493;
+            
+        }
+
+        .third-deck {
+            top: 0;  /* Top layer */
+            width: 100px;
+            left: 50px;
+            text-align: center;
+            display: flex;
+            color: grey;
+            justify-content: center;
+            background-color: #db7093;
+        }
+
+        .candle {
+            position: absolute;
+            top: -50px;
+            left: 90px;
+            width: 20px;
+            height: 50px;
+            background-color: yellow;
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeInCandle 1s ease forwards 4s;
+        }
+
+        @keyframes fallIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-200px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInCandle {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Rain effect */
+        #flowers-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .flower {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: pink;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="click-box">...APNE HATHON SE YEH BUTTON DABAIYE....</div>
+    
+    <!-- Cake will appear above the birthday message -->
+    
+    
+    <h1 id="birthday-message">ALL THE VERY BEST !! DO WELL SCORE WELL !! ☺ ☺ </h1><br><h3>BEST OF LUCK !! 🏆 </h3>
+    
+    <div id="flowers-container"></div>
+
+    <script>
+        const box = document.getElementById('click-box');
+        const message = document.getElementById('birthday-message');
+        const cakeContainer = document.getElementById('cake-container');
+        const decks = document.querySelectorAll('.cake-deck');
+        const candle = document.querySelector('.candle');
+        const flowersContainer = document.getElementById('flowers-container');
+        const body = document.body;
+
+        box.addEventListener('click', function() {
+            box.style.opacity = '0';  // Fades out the box
+            body.style.backgroundColor = '#8a2be2';  // Changes to an attractive background color
+            setTimeout(() => {
+                box.style.display = 'none';  // Hides the box after fading
+                message.style.display = 'block';  // Shows the birthday message
+                cakeContainer.style.display = 'block';  // Displays cake container
+                buildCake();  // Starts the cake-building animation
+                createFlowers();  // Creates raining flowers
+            }, 2000);
+        });
+
+        function buildCake() {
+            // Animate the cake decks falling one by one
+            decks[2].style.animationDelay = '0.5s';  // Bottom (First Deck)
+            decks[1].style.animationDelay = '1.5s';  // Middle (Second Deck)
+            decks[0].style.animationDelay = '2.5s';  // Top (Third Deck)
+            candle.style.animationDelay = '3.5s';    // Candle
+        }
+
+        function createFlowers() {
+            // Create 50 falling flowers
+            for (let i = 0; i < 50; i++) {
+                const flower = document.createElement('div');
+                flower.classList.add('flower');
+                flowersContainer.appendChild(flower);
+
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.animationDelay = Math.random() * 2 + 's';
+                flower.style.backgroundColor = ['#ff69b4', '#ff1493', '#db7093'][Math.floor(Math.random() * 3)];
+            }
+        }
+    </script>
+
+
+</body></html>
