@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KARTIKEY CHAWLA</title>
+    <style>
+        /* Victory background style */
+        .victory-bg {
+            background-color: #00FF00; /* Green background */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        // Predefined list of names
+        const predefinedNames = ["Ishika", "ishika", "Gauri", "gauri", "Jeeyansh","jeeyansh"];
+        
+        // Predefined subjects
+        const predefinedSubjects = ["EP", "PED", "BST", "ENGLISH","ECONOMICS","ACCOUNTS"];
+
+        // Function to check if the name matches any predefined name
+        function checkName(event) {
+            event.preventDefault(); // Prevent form submission
+            const userName = document.getElementById("name").value;
+            const message = document.getElementById("message");
+            const subjectForm = document.getElementById("subject-form");
+            const subjectSelect = document.getElementById("subjects");
+
+            if (predefinedNames.includes(userName)) {
+                message.textContent = "The name matches one of the predefined names! Please select a subject:";
+                message.style.color = "green";
+                subjectForm.style.display = "block"; // Show the subject form
+
+                // Populate the subject dropdown
+                subjectSelect.innerHTML = ""; // Clear any previous options
+                predefinedSubjects.forEach(subject => {
+                    const option = document.createElement("option");
+                    option.value = subject;
+                    option.textContent = subject;
+                    subjectSelect.appendChild(option);
+                });
+            } else {
+                message.textContent = "The name does not match any of the predefined names.";
+                message.style.color = "red";
+                subjectForm.style.display = "none"; // Hide the subject form
+                document.body.classList.remove("victory-bg"); // Remove victory background
+            }
+        }
+
+        // Function to check if the selected subject matches a predefined subject
+        function checkSubject() {
+            const subjectSelect = document.getElementById("subjects");
+            const selectedSubject = subjectSelect.value;
+            const victoryMessage = document.getElementById("victory-message");
+
+            if (predefinedSubjects.includes(selectedSubject)) {
+                document.body.classList.add("victory-bg"); // Apply victory background
+                victoryMessage.textContent = "All the very besttt! DO WELL SCORE WELL !!!!";
+            } else {
+                document.body.classList.remove("victory-bg"); // Remove victory background
+                victoryMessage.textContent = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2
