@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All the Best</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .message {
+            font-size: 24px;
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+    <script>
+        function displayMessage() {
+            const userName = document.getElementById("name").value;
+            const message = document.getElementById("message");
+            message.textContent = `All the best, ${userName}!`;
+            message.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h1>Wish All the Best</h1>
+    <form onsubmit="event.preventDefault(); displayMessage();">
+        <label for="name">Enter Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="message" class="message" style="display:none;"></p>
+</body>
+</html>
