@@ -141,33 +141,41 @@
         }
 
         /* Rain effect */
-        #flowers-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            pointer-events: none;
-        }
+        body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        .flower {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: pink;
-            border-radius: 50%;
-            animation: fall 5s linear infinite;
-        }
+.flower-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px);
-            }
-            100% {
-                transform: translateY(100vh);
-            }
-        }
+.flower {
+    position: absolute;
+    bottom: -100px;
+    width: 20px;
+    height: 20px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
     </style>
 </head>
 <body>
